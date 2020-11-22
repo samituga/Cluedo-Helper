@@ -8,6 +8,7 @@ public interface Card {
 
     /**
      * The label of the card
+     *
      * @return The label of the card
      */
     String label();
@@ -15,6 +16,7 @@ public interface Card {
 
     /**
      * The type of the card
+     *
      * @return The type of the card
      */
     Type type();
@@ -22,8 +24,18 @@ public interface Card {
 
     /**
      * This field defines which cards will be available to a game by default
+     *
      * @return If the card is default or not
      */
     boolean isDefault();
 
+
+    /**
+     * Constructs the string value of the card
+     *
+     * @return The string value of the card
+     */
+    default String stringValue() {
+        return label() + " " + type();
+    }
 }

@@ -47,6 +47,6 @@ public enum Weapon implements Card {
 
     @Override
     public String toString() {
-        return type + " " + label;
+        return stringValue();
     }
 }

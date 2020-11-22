@@ -17,8 +17,8 @@ public enum Character implements Card {
     PEACOCK("Mrs. Peacock", Colour.BLUE, true),
     PLUM("Professor Plum", Colour.PURPLE, true),
     SCARLETT("Miss Scarlett", Colour.RED, true),
-    ORCHID("Orchid", Colour.ORCHID, false),
-    WHITE("White", Colour.WHITE, true),
+    ORCHID("Orchid", Colour.ORCHID, true),
+    WHITE("White", Colour.WHITE, false),
     ROSE("Rose", Colour.ROSE, false),
     PEACH("Peach", Colour.PEACH, false),
     RUSTY("Rusty", Colour.RUST, false),
@@ -38,6 +38,7 @@ public enum Character implements Card {
 
     /**
      * The colour associated with the character
+     *
      * @return The colour associated with the character
      */
     public Colour colour() {
@@ -70,6 +71,6 @@ public enum Character implements Card {
 
     @Override
     public String toString() {
-        return type + " " + label;
+        return stringValue();
     }
 }

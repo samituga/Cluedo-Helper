@@ -55,6 +55,6 @@ public enum Room implements Card {
 
     @Override
     public String toString() {
-        return type + " " + label;
+        return stringValue();
     }
 }
