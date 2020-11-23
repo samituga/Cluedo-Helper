@@ -5,7 +5,7 @@ import com.sam.cluedo.util.Colour;
 /**
  * Defines the character cards
  */
-public enum Character implements Card {
+public enum Character implements ICard {
     ADLER("Adler", Colour.EMERALD, false),
     AZURE("Azure", Colour.AZURE, false),
     BROOK("Meadow-Brook", Colour.SAPPHIRE, false),

@@ -3,7 +3,7 @@ package com.sam.cluedo.cards;
 /**
  * Defines the weapon cards
  */
-public enum Weapon implements Card {
+public enum Weapon implements ICard {
     CANDLESTICK("Candlestick", true),
     DAGGER("Dagger", true),
     LEAD_PIPE("Lead Pipe", true),

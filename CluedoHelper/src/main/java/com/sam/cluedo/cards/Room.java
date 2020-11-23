@@ -3,7 +3,7 @@ package com.sam.cluedo.cards;
 /**
  * Defines the room cards
  */
-public enum Room implements Card {
+public enum Room implements ICard {
     BALLROOM("Ballroom", true),
     BILLIARD_ROOM("Billiard Room", true),
     CONSERVATORY("Conservatory", true),

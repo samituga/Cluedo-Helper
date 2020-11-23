@@ -1,7 +1,8 @@
-package com.sam.cluedo;
+package com.sam.cluedo.player;
 
-import com.sam.cluedo.cards.Card;
+
 import com.sam.cluedo.cards.Character;
+import com.sam.cluedo.cards.ICard;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,9 +13,7 @@ import java.util.Set;
  */
 public class Player {
 
-    // TODO: 22/11/20 Package for this class
-
-    private final Set<Card> deck;
+    private final Set<ICard> deck;
     private final String name;
     private final Character character;
     private final int playPosition;
@@ -47,22 +46,22 @@ public class Player {
     /**
      * Adds a card to the deck of the player
      *
-     * @param card The card to add
+     * @param ICard The card to add
      * @return True if the card didn't exist in the deck
      */
-    private boolean addCard(Card card) {
-        return deck.add(card);
+    private boolean addCard(ICard ICard) {
+        return deck.add(ICard);
     }
 
 
     /**
      * Removes a card from the deck of the player
      *
-     * @param card The card to remove
+     * @param ICard The card to remove
      * @return True if the card existed in the deck
      */
-    private boolean removeCard(Card card) {
-        return deck.remove(card);
+    private boolean removeCard(ICard ICard) {
+        return deck.remove(ICard);
     }
 
     /**
@@ -79,7 +78,7 @@ public class Player {
      *
      * @return The deck of the player
      */
-    public Set<Card> deck() {
+    public Set<ICard> deck() {
         return deck;
     }
 
@@ -89,6 +88,7 @@ public class Player {
      * @return The name of the player
      */
     public String name() {
+
         return name;
     }
 
@@ -104,7 +104,7 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "cards=" + deck +
+                "ICards=" + deck +
                 ", name='" + name + '\'' +
                 ", playPosition=" + playPosition +
                 '}';

@@ -73,7 +73,18 @@ public class ExceptionMessageFormatter {
      * @param where  The method where this is being called
      * @return the message
      */
-    public static <T> String message(final Class<T> caller, final String where, String message) {
+    public static <T> String message(final Object caller, final String where, final String message) {
+        return message(caller.getClass(), where, message);
+    }
+
+    /**
+     * Formats a message with the given params
+     *
+     * @param caller The caller
+     * @param where  The method where this is being called
+     * @return the message
+     */
+    public static <T> String message(final Class<T> caller, final String where, final String message) {
         return caller.getCanonicalName() + "::" + where + (message != null ? "--" + message : "");
     }
 }

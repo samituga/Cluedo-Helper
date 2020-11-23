@@ -6,7 +6,9 @@ package com.sam.cluedo.cards;
 enum Type {
     CHARACTER("Character"),
     ROOM("Room"),
-    WEAPON("Weapon");
+    WEAPON("Weapon"),
+    MURDER("Murder"),
+    UNKNOWN("Unknown");
 
     private final String label;
 
@@ -14,8 +16,14 @@ enum Type {
         this.label = label;
     }
 
+    public String label() {
+        return label;
+    }
+
     @Override
     public String toString() {
-        return label;
+        return "Type{" +
+                "label='" + label + '\'' +
+                '}';
     }
 }

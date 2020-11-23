@@ -1,9 +1,9 @@
 package com.sam.cluedo.behaviour;
 
-import com.sam.cluedo.Player;
-import com.sam.cluedo.cards.Card;
+import com.sam.cluedo.cards.ICard;
 import com.sam.cluedo.exception.ExceptionMessageFormatter;
 import com.sam.cluedo.exception.UnexpectedBehaviourException;
+import com.sam.cluedo.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,14 +19,14 @@ public class Validator {
 
 
     /**
-     * Validates if the number of cards matches the rules
+     * Validates if the number of ICards matches the rules
      *
-     * @param cards Collection with the cards
+     * @param ICards Collection with the ICards
      * @return The reasons of failure, empty if everything is ok
      */
-    private static Map<ReasonOfFailure, String> numberOfCards(final Set<Card> cards) {
+    private static Map<ReasonOfFailure, String> numberOfCards(final Set<ICard> ICards) {
         final Map<ReasonOfFailure, String> reasonsMap = new HashMap<>();
-        final int numberOfCards = cards.size();
+        final int numberOfCards = ICards.size();
         maxMinValidator(reasonsMap, NUMBER_OF_CARDS, numberOfCards, GAME_CARDS, GAME_CARDS);
         return reasonsMap;
     }
@@ -45,7 +45,7 @@ public class Validator {
     }
 
     /**
-     * Validate if the number of cards per players is ok
+     * Validate if the number of ICards per players is ok
      *
      * @param players Collection with the players
      * @return The reasons of failure, empty if everything is ok
@@ -55,17 +55,17 @@ public class Validator {
         final int numberOfPlayers = players.size();
 
         if (numberOfPlayers == 3) {
-            // When there are three players every player will have six cards
+            // When there are three players every player will have six ICards
             for (Player player : players) {
                 final int numberOfCards = player.deck().size();
                 if (numberOfCards != 6) {
                     reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
-                            " and should have six cards");
+                            " and should have six ICards");
                     return reasonsMap;
                 }
             }
         } else if (numberOfPlayers == 4) {
-            // When there are four players two of them will have four cards and the others two will have 5 cards
+            // When there are four players two of them will have four ICards and the others two will have 5 ICards
             int playersWithFourCards = 0;
             int playersWithFiveCards = 0;
 
@@ -77,17 +77,17 @@ public class Validator {
                     playersWithFiveCards++;
                 } else {
                     reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
-                            " and should have four or five cards");
+                            " and should have four or five ICards");
                 }
             }
             if (playersWithFiveCards != 2 || playersWithFourCards != 2) {
                 reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "When there are four players, two of them should have four " +
-                        "cards, and the other two should have five cards, instead we got " + playersWithFourCards +
-                        " players with four cards and " + playersWithFiveCards + " with five cards");
+                        "ICards, and the other two should have five ICards, instead we got " + playersWithFourCards +
+                        " players with four ICards and " + playersWithFiveCards + " with five ICards");
                 return reasonsMap;
             }
         } else if (numberOfPlayers == 5) {
-            // When there are five players two of them will have three cards and the others three will have 4 cards
+            // When there are five players two of them will have three ICards and the others three will have 4 ICards
             int playersWithThreeCards = 0;
             int playersWithFourCards = 0;
 
@@ -99,23 +99,23 @@ public class Validator {
                     playersWithFourCards++;
                 } else {
                     reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
-                            " and should have three or four cards");
+                            " and should have three or four ICards");
                     return reasonsMap;
                 }
             }
             if (playersWithThreeCards != 2 || playersWithFourCards != 3) {
                 reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "When there are five players, two of them should have three " +
-                        "cards, and the other three should have four cards, instead we got " + playersWithThreeCards +
-                        " players with three cards and " + playersWithFourCards + " with four cards");
+                        "ICards, and the other three should have four ICards, instead we got " + playersWithThreeCards +
+                        " players with three ICards and " + playersWithFourCards + " with four ICards");
                 return reasonsMap;
             }
         } else if (numberOfPlayers == 6) {
-            // When there are six players every player will have three cards
+            // When there are six players every player will have three ICards
             for (Player player : players) {
                 final int numberOfCards = player.deck().size();
                 if (numberOfCards != 3) {
                     reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
-                            " and should have three cards");
+                            " and should have three ICards");
                     return reasonsMap;
                 }
             }

@@ -1,9 +1,12 @@
 package com.sam.cluedo.cards;
 
+import com.sam.cluedo.base.NotNull;
+import com.sam.cluedo.base.Typename;
+
 /**
  * Define the behaviour that a card should follow
  */
-public interface Card {
+public interface ICard {
 
 
     /**
@@ -29,6 +32,17 @@ public interface Card {
      */
     boolean isDefault();
 
+
+    /**
+     * Checks if the parameter is the same class of this class
+     *
+     * @param clazz The class to compare
+     * @return If the parameter is the same class of this class
+     */
+    default boolean is(final Class<ICard> clazz) {
+        NotNull.required(clazz, this.getClass(), "is()");
+        return Typename.get(clazz).equals(type().label());
+    }
 
     /**
      * Constructs the string value of the card
