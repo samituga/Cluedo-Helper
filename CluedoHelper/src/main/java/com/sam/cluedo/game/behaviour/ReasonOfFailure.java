@@ -1,4 +1,4 @@
-package com.sam.cluedo.behaviour;
+package com.sam.cluedo.game.behaviour;
 
 /**
  * This enum defines the possible reasons of failure

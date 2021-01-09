@@ -1,16 +1,15 @@
-package com.sam.cluedo.behaviour;
+package com.sam.cluedo.game.behaviour;
 
-import com.sam.cluedo.cards.ICard;
-import com.sam.cluedo.exception.ExceptionMessageFormatter;
+import com.sam.cluedo.game.cards.ICard;
 import com.sam.cluedo.exception.UnexpectedBehaviourException;
-import com.sam.cluedo.player.Player;
+import com.sam.cluedo.game.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import static com.sam.cluedo.behaviour.ReasonOfFailure.*;
-import static com.sam.cluedo.behaviour.Rules.*;
+import static com.sam.cluedo.game.behaviour.ReasonOfFailure.*;
+import static com.sam.cluedo.game.behaviour.Rules.*;
 
 /**
  * Validates all the rules of the game
@@ -121,7 +120,6 @@ public class Validator {
             }
         } else {
             // Program shouldn't be able to get to this statement
-            String message = ExceptionMessageFormatter.message(Validator.class, "Program shouldn't be able to get to this statement");
             throw new UnexpectedBehaviourException("Program shouldn't be able to get to this statement");
         }
 

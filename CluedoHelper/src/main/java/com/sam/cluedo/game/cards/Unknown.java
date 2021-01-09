@@ -1,6 +1,7 @@
-package com.sam.cluedo.cards;
+package com.sam.cluedo.game.cards;
 
-public class Unknown implements ICard {
+public class Unknown implements ICard {     // TODO: 24/11/20 Use this or the Unknown static property?
+
 
     @Override
     public String label() {

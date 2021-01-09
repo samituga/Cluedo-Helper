@@ -1,17 +1,19 @@
-package com.sam.cluedo.game;
+package com.sam.cluedo.game.player;
 
-import com.sam.cluedo.exception.ExceptionMessageFormatter;
+import com.sam.cluedo.game.cards.ICard;
+import com.sam.cluedo.game.Round;
+import com.sam.cluedo.game.State;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class will store the state of a relation of a {@link com.sam.cluedo.player.Player}
- * and a {@link com.sam.cluedo.cards.ICard} storing the times that a given player asked for
+ * This class will store the state of a relation of a {@link Player}
+ * and a {@link ICard} storing the times that a given player asked for
  * a given card and how many times the same player answered when someone asked for a card
  * it will also store the {@link State} and the probability of the player to contain that card
  */
-public class CardStatistics {
+class CardStatistics {
 
 
     /**
@@ -28,7 +30,7 @@ public class CardStatistics {
     /**
      * The probability of the player to own this card
      */
-    private int probability;
+    private int owningProbability;
 
 
     /**
@@ -36,11 +38,11 @@ public class CardStatistics {
      */
     private State state;
 
-    public CardStatistics(final int probability) {
+    public CardStatistics(final int owningProbability) {
         this.asked = new HashSet<>();
         this.answered = new HashSet<>();
-        checkProbability(probability);
-        this.probability = probability;
+        checkProbability(owningProbability);
+        this.owningProbability = owningProbability;
         updateState();
     }
 
@@ -63,15 +65,10 @@ public class CardStatistics {
         answered.add(round);
     }
 
-    /**
-     * Changes the probability of owning this card
-     *
-     * @param probability The probability to own this card
-     */
-    public void owningProbability(final int probability) {
-        checkProbability(probability);
+    public void updateOwningProbability(final int owningProbability) {
+        checkProbability(owningProbability);
         updateState();
-        this.probability = probability;
+        this.owningProbability = owningProbability;
     }
 
     /**
@@ -82,19 +79,11 @@ public class CardStatistics {
      */
     private void checkProbability(final int probability) {
         if (probability > 100) {
-            String exceptionMessage = ExceptionMessageFormatter.message(
-                    this,
-                    "containProbability()",
-                    "Probability can't be higher than 100"
-            );
-            throw new UnsupportedOperationException(exceptionMessage);
+            // TODO: 24/11/20 log
+            throw new UnsupportedOperationException("Probability can't be higher than 100");
         } else if (probability < 0) {
-            String exceptionMessage = ExceptionMessageFormatter.message(
-                    this,
-                    "containProbability()",
-                    "Probability can't be lower than 0"
-            );
-            throw new UnsupportedOperationException(exceptionMessage);
+            // TODO: 24/11/20 log
+            throw new UnsupportedOperationException("Probability can't be lower than 0");
         }
     }
 
@@ -102,9 +91,9 @@ public class CardStatistics {
      * Updates the state
      */
     private void updateState() {
-        if (probability == 100) {
+        if (owningProbability == 100) {
             state = State.HAS;
-        } else if (probability == 0) {
+        } else if (owningProbability == 0) {
             state = State.HAS_NOT;
         } else {
             state = State.UNKNOWN;
@@ -135,7 +124,7 @@ public class CardStatistics {
      * @return The probability of owning this card
      */
     public int probability() {
-        return probability;
+        return owningProbability;
     }
 
     /**

@@ -1,12 +1,11 @@
 package com.sam.cluedo.game;
 
 import com.sam.cluedo.base.NotNull;
-import com.sam.cluedo.cards.ICard;
-import com.sam.cluedo.cards.Character;
-import com.sam.cluedo.cards.Room;
-import com.sam.cluedo.cards.Weapon;
-import com.sam.cluedo.exception.ExceptionMessageFormatter;
-import com.sam.cluedo.player.Player;
+import com.sam.cluedo.game.cards.Character;
+import com.sam.cluedo.game.cards.ICard;
+import com.sam.cluedo.game.cards.Room;
+import com.sam.cluedo.game.cards.Weapon;
+import com.sam.cluedo.game.player.Player;
 
 import java.util.Objects;
 
@@ -51,12 +50,7 @@ public class Round {
         }
 
         if (number < 0) {
-            final String exceptionMessage = ExceptionMessageFormatter.message(
-                    this,
-                    "validate()",
-                    "round number can't be lower than 0"
-            );
-            throw new UnsupportedOperationException(exceptionMessage);
+            throw new UnsupportedOperationException("round number can't be lower than 0");
         }
 
         this.number = number;

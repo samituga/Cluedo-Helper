@@ -1,4 +1,4 @@
-package com.sam.cluedo.cards;
+package com.sam.cluedo.game.cards;
 
 /**
  * Defines the type of a card

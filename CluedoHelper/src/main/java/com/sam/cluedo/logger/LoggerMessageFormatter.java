@@ -1,4 +1,4 @@
-package com.sam.cluedo.exception;
+package com.sam.cluedo.logger;
 
 import com.sam.cluedo.base.NotEmpty;
 import com.sam.cluedo.base.NotNull;
@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Util class to help construct the message to be used in the exceptions
+ * Util class to help construct the message to be used in the logs
  */
-public class ExceptionMessageFormatter {
+public class LoggerMessageFormatter {
 
     /**
      * Formats a message with the given params
@@ -85,6 +85,6 @@ public class ExceptionMessageFormatter {
      * @return the message
      */
     public static <T> String message(final Class<T> caller, final String where, final String message) {
-        return caller.getCanonicalName() + "::" + where + (message != null ? "--" + message : "");
+        return caller.getCanonicalName() + "::" + where + (message != null ? " - " + message : "");
     }
 }

@@ -1,4 +1,4 @@
-package com.sam.cluedo.cards;
+package com.sam.cluedo.game.cards;
 
 import com.sam.cluedo.util.Colour;
 
@@ -13,10 +13,10 @@ public enum Character implements ICard {
     GREEN("Green", Colour.GREEN, true),
     GREY("Grey", Colour.GREY, false),
     MORIARTY("Moriarty", Colour.SHADOW, false),
-    MUSTARD("Colonel Mustard", Colour.YELLOW, true),
-    PEACOCK("Mrs. Peacock", Colour.BLUE, true),
-    PLUM("Professor Plum", Colour.PURPLE, true),
-    SCARLETT("Miss Scarlett", Colour.RED, true),
+    MUSTARD("Mustard", Colour.YELLOW, true),
+    PEACOCK("Peacock", Colour.BLUE, true),
+    PLUM("Plum", Colour.PURPLE, true),
+    SCARLETT("Scarlett", Colour.RED, true),
     ORCHID("Orchid", Colour.ORCHID, true),
     WHITE("White", Colour.WHITE, false),
     ROSE("Rose", Colour.ROSE, false),

@@ -1,8 +1,8 @@
-package com.sam.cluedo.player;
+package com.sam.cluedo.game.player;
 
 
-import com.sam.cluedo.cards.Character;
-import com.sam.cluedo.cards.ICard;
+import com.sam.cluedo.game.cards.Character;
+import com.sam.cluedo.game.cards.ICard;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -13,9 +13,24 @@ import java.util.Set;
  */
 public class Player {
 
+    /**
+     * The deck of cards of this player
+     */
     private final Set<ICard> deck;
+
+    /**
+     * The name of this player
+     */
     private final String name;
+
+    /**
+     * The character associated with this player
+     */
     private final Character character;
+
+    /**
+     * The position that this player will play
+     */
     private final int playPosition;
 
 

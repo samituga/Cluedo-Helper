@@ -1,4 +1,4 @@
-package com.sam.cluedo.cards;
+package com.sam.cluedo.game.cards;
 
 import com.sam.cluedo.base.NotNull;
 import com.sam.cluedo.base.Typename;
@@ -8,6 +8,23 @@ import com.sam.cluedo.base.Typename;
  */
 public interface ICard {
 
+    // TODO: 24/11/20 Use this or the Unknown class?
+    ICard UNKNOWN = new ICard() {
+        @Override
+        public String label() {
+            return "Unknown";
+        }
+
+        @Override
+        public Type type() {
+            return Type.UNKNOWN;
+        }
+
+        @Override
+        public boolean isDefault() {
+            return false;
+        }
+    };
 
     /**
      * The label of the card
