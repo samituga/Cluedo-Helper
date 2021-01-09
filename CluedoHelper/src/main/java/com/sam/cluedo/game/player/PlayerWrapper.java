@@ -2,7 +2,7 @@ package com.sam.cluedo.game.player;
 
 import com.sam.cluedo.base.NotEmpty;
 import com.sam.cluedo.base.NotNull;
-import com.sam.cluedo.exception.UnexpectedBehaviourException;
+import com.sam.cluedo.exception.UnsupportedBehaviourException;
 import com.sam.cluedo.game.Round;
 import com.sam.cluedo.game.cards.Character;
 import com.sam.cluedo.game.cards.ICard;
@@ -41,7 +41,7 @@ public class PlayerWrapper { // TODO: 23/11/20 Keep on working with this class
         for (ICard suspected : suspectedCards) {
             if (!cardStatisticsMap.containsKey(suspected)) {
                 // TODO: 24/11/20 log
-                throw new UnexpectedBehaviourException("Card should exist in the map");
+                throw new UnsupportedBehaviourException("Card should exist in the map");
             }
             final CardStatistics cardStatistics = cardStatisticsMap.get(suspected);
             cardStatistics.asked(round);
@@ -60,7 +60,7 @@ public class PlayerWrapper { // TODO: 23/11/20 Keep on working with this class
         for (ICard suspected : suspectedCards) {
             if (!cardStatisticsMap.containsKey(suspected)) {
                 // TODO: 24/11/20 log
-                throw new UnexpectedBehaviourException("Card should exist in the map");
+                throw new UnsupportedBehaviourException("Card should exist in the map");
             }
             final CardStatistics cardStatistics = cardStatisticsMap.get(suspected);
             cardStatistics.answered(round);
@@ -77,7 +77,7 @@ public class PlayerWrapper { // TODO: 23/11/20 Keep on working with this class
         NotNull.required(suspected, this, "updateCardOwningProbability()");
         if (!cardStatisticsMap.containsKey(suspected)) {
             // TODO: 24/11/20 log
-            throw new UnexpectedBehaviourException("Card should exist in the map");
+            throw new UnsupportedBehaviourException("Card should exist in the map");
         }
         final CardStatistics cardStatistics = cardStatisticsMap.get(suspected);
         cardStatistics.updateOwningProbability(owningProbability);

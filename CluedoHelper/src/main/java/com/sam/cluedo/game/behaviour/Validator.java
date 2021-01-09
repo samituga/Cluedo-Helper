@@ -1,7 +1,7 @@
 package com.sam.cluedo.game.behaviour;
 
 import com.sam.cluedo.game.cards.ICard;
-import com.sam.cluedo.exception.UnexpectedBehaviourException;
+import com.sam.cluedo.exception.UnsupportedBehaviourException;
 import com.sam.cluedo.game.player.Player;
 
 import java.util.HashMap;
@@ -50,7 +50,7 @@ public class Validator {
      * @return The reasons of failure, empty if everything is ok
      */
     private static Map<ReasonOfFailure, String> numberOfPlayerCards(final Set<Player> players) {
-        final Map<ReasonOfFailure, String> reasonsMap = new HashMap<>();
+        final Map<ReasonOfFailure, String> reasonsOfFailure = new HashMap<>();
         final int numberOfPlayers = players.size();
 
         if (numberOfPlayers == 3) {
@@ -58,9 +58,9 @@ public class Validator {
             for (Player player : players) {
                 final int numberOfCards = player.deck().size();
                 if (numberOfCards != 6) {
-                    reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
+                    reasonsOfFailure.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
                             " and should have six ICards");
-                    return reasonsMap;
+                    return reasonsOfFailure;
                 }
             }
         } else if (numberOfPlayers == 4) {
@@ -75,15 +75,15 @@ public class Validator {
                 } else if (numberOfCards == 5) {
                     playersWithFiveCards++;
                 } else {
-                    reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
+                    reasonsOfFailure.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
                             " and should have four or five ICards");
                 }
             }
             if (playersWithFiveCards != 2 || playersWithFourCards != 2) {
-                reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "When there are four players, two of them should have four " +
+                reasonsOfFailure.put(PLAYER_NUMBER_OF_CARDS, "When there are four players, two of them should have four " +
                         "ICards, and the other two should have five ICards, instead we got " + playersWithFourCards +
                         " players with four ICards and " + playersWithFiveCards + " with five ICards");
-                return reasonsMap;
+                return reasonsOfFailure;
             }
         } else if (numberOfPlayers == 5) {
             // When there are five players two of them will have three ICards and the others three will have 4 ICards
@@ -97,34 +97,34 @@ public class Validator {
                 } else if (numberOfCards == 4) {
                     playersWithFourCards++;
                 } else {
-                    reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
+                    reasonsOfFailure.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
                             " and should have three or four ICards");
-                    return reasonsMap;
+                    return reasonsOfFailure;
                 }
             }
             if (playersWithThreeCards != 2 || playersWithFourCards != 3) {
-                reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "When there are five players, two of them should have three " +
+                reasonsOfFailure.put(PLAYER_NUMBER_OF_CARDS, "When there are five players, two of them should have three " +
                         "ICards, and the other three should have four ICards, instead we got " + playersWithThreeCards +
                         " players with three ICards and " + playersWithFourCards + " with four ICards");
-                return reasonsMap;
+                return reasonsOfFailure;
             }
         } else if (numberOfPlayers == 6) {
             // When there are six players every player will have three ICards
             for (Player player : players) {
                 final int numberOfCards = player.deck().size();
                 if (numberOfCards != 3) {
-                    reasonsMap.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
+                    reasonsOfFailure.put(PLAYER_NUMBER_OF_CARDS, "The player " + player.name() + " has " + numberOfCards +
                             " and should have three ICards");
-                    return reasonsMap;
+                    return reasonsOfFailure;
                 }
             }
         } else {
             // Program shouldn't be able to get to this statement
-            throw new UnexpectedBehaviourException("Program shouldn't be able to get to this statement");
+            throw new UnsupportedBehaviourException("Invalid number of players");
         }
 
 
-        return reasonsMap;
+        return reasonsOfFailure;
     }
 
 
@@ -143,9 +143,9 @@ public class Validator {
                                         final int max,
                                         final int min) {
         if (size > max) {
-            reasonsMap.put(rule, "Size " + size + " is greater than the max supported: " + max);
+            reasonsMap.put(rule, size + " is greater than the max supported: " + max);
         } else if (size < min) {
-            reasonsMap.put(rule, "Size " + size + " is less than the min supported: " + min);
+            reasonsMap.put(rule, size + " is less than the min supported: " + min);
         }
     }
 

@@ -3,9 +3,9 @@ package com.sam.cluedo.exception;
 /**
  * This exception defines that something that should never happen in the program happened
  */
-public class UnexpectedBehaviourException extends RuntimeException {
+public class UnsupportedBehaviourException extends RuntimeException {
 
-    public UnexpectedBehaviourException(String message) {
+    public UnsupportedBehaviourException(String message) {
         super(message);
     }
 }
